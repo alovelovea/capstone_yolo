@@ -13,7 +13,11 @@
 *(※ 다운로드 후 프로젝트 루트 디렉토리에 압축을 풀어주세요.)*
 
 *   **[Original Dataset (원본 데이터)](https://drive.google.com/file/d/1mlqhVGrsvCygL8PqU9c8SC0pHlXK512k/view?usp=drive_link)**: 클래스별 원본 데이터셋
+*   <img width="265" height="368" alt="image" src="https://github.com/user-attachments/assets/80575f91-d414-4ad3-a726-85f5280cf1c4" />
+
 *   **[Split Dataset (학습용 데이터)](https://drive.google.com/file/d/1FJnKN8dj6yr1U8h476PKUWfaoWc2WpsQ/view?usp=sharing)**: Train/Val/ 분할 및 YOLO 형식 변환 완료 데이터
+*   <img width="211" height="21" alt="image" src="https://github.com/user-attachments/assets/b415837d-d9a1-4dde-b40b-3c64fe8fd5dd" />
+
 
 ## 🛠️ 3. 기술 스택 (Tech Stack)
 *   **Language:** Python 3.x
