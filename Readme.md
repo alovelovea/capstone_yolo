@@ -64,7 +64,7 @@ pip install -r requirements.txt
 | **4** | `4txt방식변경.py` | Segmentation 형식(Polygon 좌표)을 YOLO **Detection 형식(Normalized Center x, y, w, h)**으로 변환하여 전체 데이터셋 라벨 형식을 통일합니다. |
 | **5** | `5플라스틱augmentation적용.py` | **Albumentations** 기반 데이터 증강을 수행하여 부족한 클래스 데이터를 보강합니다. 밝기/색상 변화, Blur, 좌우 반전 등을 적용하며 Bounding Box 좌표를 자동 보정합니다. |
 | **6** | `6모델학습.py` | **Ultralytics YOLOv11n** 모델을 활용하여 학습을 진행합니다. GPU(CUDA) 가속, Mosaic/MixUp 증강, 조기 종료(Early Stopping) 등을 포함하며 최종 `best.pt` 가중치를 생성합니다. |
-| **7** | `7predict.py` | 학습된 모델을 이용해 추론을 수행합니다. **OpenCV 기반 인터랙티브 뷰어**를 제공하며, 화살표 키로 이미지 이동 및 Confidence Threshold를 실시간으로 조절할 수 있습니다. |
+| **7** | `7predict.py` | 학습 여부와 상관없이 weights/best.pt 파일만 있다면 즉시 추론할 수 있는 OpenCV 기반 인터랙티브 뷰어입니다. 실행 후 엔터만 누르면 기본 모델이 로드되며, 필요 시 경로를 직접 입력할 수도 있습니다. 방향키(또는 A/S/W/D)를 통해 이미지 이동 및 **탐지 민감도(Confidence)**를 실시간으로 조절하며 결과를 확인할 수 있습니다. |
 
 ---
 
