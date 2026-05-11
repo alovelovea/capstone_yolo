@@ -52,14 +52,26 @@ pip install -r requirements.txt
 ### 📜 5. 소스코드 상세 설명 (Workflow)
 
 프로젝트는 데이터 전처리부터 모델 학습, 예측까지 총 7단계의 파이프라인으로 구성되어 있습니다.
-
+1. 데이터셋 균형화
+↓
+2. 데이터 분포 분석
+↓
+3. 라벨 포맷 검사
+↓
+4. Segmentation → Detection 변환
+↓
+5. 클래스 불균형 보완 Augmentation
+↓
+6. YOLOv11 모델 학습
+↓
+7. 실시간 예측 및 시각화
 | 순서 | 파일명 | 주요 역할 및 기능 |
 | :--- | :--- | :--- |
-| **1** | `1데이터분할.py` | 원본 데이터를 **Train / Validation** 세트로 분할(8:2)하고 폴더 구조를 자동 생성합니다. |
-| **2** | `2데이터셋구성확인.py` | 클래스별 이미지/라벨 개수를 점검하여 **데이터 불균형 상태**를 시각적으로 확인합니다. |
-| **3** | `3txt형식파악.py` | 라벨 파일(`.txt`)의 포맷과 클래스 ID, 좌표 값이 YOLO 표준에 부합하는지 검증합니다. |
-| **4** | `4txt방식변경.py` | 다양한 좌표 형식(Absolute 등)을 YOLO 표준인 **Normalized Center(x, y, w, h)**로 일괄 변환합니다. |
-| **5** | `5플라스틱augmentation적용.py` | **Albumentations**를 사용하여 부족한 클래스(플라스틱)에 데이터 증강을 적용합니다. |
-| **6** | `6모델학습.py` | **YOLOv11** 모델을 활용하여 학습을 수행하며, 최종 가중치(`best.pt`)를 생성합니다. |
-| **7** | `7predict.py` | 학습된 모델과 **OpenCV**를 결합하여 실시간 영상/이미지에서 쓰레기를 분류하고 시각화합니다. |
+| **1** | `1데이터분할.py` | 클래스별 원본 데이터(_1, _over2, mix_class)를 수집하여 목표 개수(2000장)에 맞게 균형화하고, Train/Validation(8:2) 데이터셋(balanced_dataset)을 자동 생성합니다. 또한 dataset.yaml 및 데이터 무결성 검사까지 수행합니다. |
+| **2** | `2데이터셋구성확인.py` |생성된 balanced_dataset의 클래스별 Train/Validation 분포를 분석하고, 데이터 불균형 여부를 확인합니다. 특히 부족한 클래스(Plastic)의 증강 필요 수량을 자동 계산합니다. |
+| **3** | `3txt형식파악.py` |YOLO 라벨 파일(.txt)의 형식을 분석하여 Detection 형식(class x y w h)과 Segmentation 형식을 구분하고, 잘못된 라벨(invalid)을 탐지합니다. |
+| **4** | `4txt방식변경.py` |Segmentation 형식 라벨(polygon 좌표)을 YOLO Detection 형식(Normalized Center x,y,w,h)으로 변환하여 전체 데이터셋 라벨 형식을 통일합니다. 원본 데이터는 유지하고 balanced_dataset 내부 라벨만 수정합니다.|
+| **5** | `5플라스틱augmentation적용.py` |Albumentations 기반 데이터 증강을 수행하여 부족한 Plastic 클래스 데이터를 보강합니다. 밝기 변화, 색상 변화, Blur, 좌우 반전 등을 적용하며 Bounding Box를 YOLO 형식에 맞게 자동 보정합니다|
+| **6** | `6모델학습.py` | Ultralytics YOLOv11n 모델을 활용하여 쓰레기 분류 모델을 학습합니다. GPU(CUDA) 기반 학습, Mosaic/MixUp Augmentation, 조기 종료(Early Stopping), Validation 평가 등을 포함하며 최종 best.pt 가중치를 생성합니다.|
+| **7** | `7predict.py` | 학습된 best.pt 모델을 이용하여 이미지 기반 쓰레기 탐지를 수행합니다. OpenCV 기반 인터랙티브 뷰어를 제공하며, 화살표 키를 이용해 이미지 이동 및 Confidence Threshold를 실시간 조절할 수 있습니다.|
 
