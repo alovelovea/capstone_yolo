@@ -11,6 +11,7 @@
 ## 📂 2. 데이터셋 (Dataset)
 프로젝트에 사용된 데이터는 용량 문제로 외부 링크를 통해 공유합니다. 
 *(※ 다운로드 후 프로젝트 루트 디렉토리에 압축을 풀어주세요.)*
+*(루트 디렉토리 이름: combined_data_v2)
 
 *   **[Original Dataset (원본 데이터)](https://drive.google.com/file/d/1mlqhVGrsvCygL8PqU9c8SC0pHlXK512k/view?usp=drive_link)**: 클래스별 원본 데이터셋
 *   <img width="265" height="368" alt="image" src="https://github.com/user-attachments/assets/80575f91-d414-4ad3-a726-85f5280cf1c4" />
