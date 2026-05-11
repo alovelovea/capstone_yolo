@@ -3,10 +3,14 @@
 ### 1. 프로젝트 배경 및 목적
 지속 가능한 환경을 조성하기 위해 올바른 쓰레기 분리배출은 필수적입니다. 본 프로젝트는 분리배출 과정의 혼동을 줄이고 효율을 높이기 위해, **딥러닝 객체 탐지(Object Detection) 모델을 활용하여 쓰레기 종류를 실시간으로 식별하고 관리하는 시스템 구축**을 목표로 합니다.
 
+---
+
 ### 2. 📦 데이터 수집 및 구성
 모델의 일반화 성능을 높이기 위해 다양한 경로로 데이터를 확보하여 데이터셋의 신뢰도를 높였습니다.
 *   **🌐 온라인 데이터 수집:** 공공데이터 포털, AI Hub 등 검증된 온라인 소스에서 기초 이미지 데이터를 확보하였습니다.
 *   **📸 팀 자체 수집:** 프로젝트의 실용성을 더하기 위해 **팀원들이 직접 일상 속 쓰레기 사진을 촬영하고 수집**하였습니다. 이를 통해 실제 현장에서 발생할 수 있는 다양한 배경, 조명 조건, 훼손된 쓰레기 상태 등을 데이터에 반영하였습니다.
+
+---
 
 ### 3. 🛠️ 기술적 특징 및 문제 해결
 *   **🚀 최신 모델 적용:** **Ultralytics YOLOv11** 모델을 채택하여 실시간 처리에 적합한 빠른 속도와 높은 객체 인식 정확도를 구현하였습니다.
@@ -17,27 +21,27 @@
     *   OpenCV 기반의 인터랙티브 인터페이스를 통해 사용자가 실시간으로 모델의 탐지 성능과 임계값을 테스트할 수 있는 환경을 제공합니다.
 
 ---
-## 📂 2. 데이터셋 (Dataset)
-프로젝트에 사용된 데이터는 용량 문제로 외부 링크를 통해 공유합니다. 
-*(※ 다운로드 후 프로젝트 루트 디렉토리에 압축을 풀어주세요.)*
-*(루트 디렉토리 이름: combined_data_v2)
+
+### 📂 4. 데이터셋 (Dataset)
+프로젝트에 사용된 데이터는 용량 문제로 외부 링크를 통해 공유합니다.  
+*(※ 다운로드 후 프로젝트 루트 디렉토리에 압축을 풀어주세요. 루트 디렉토리 이름: `combined_data_v2`)*
 
 *   **[Original Dataset (원본 데이터)](https://drive.google.com/file/d/1mlqhVGrsvCygL8PqU9c8SC0pHlXK512k/view?usp=drive_link)**: 클래스별 원본 데이터셋
-*   <img width="265" height="368" alt="image" src="https://github.com/user-attachments/assets/80575f91-d414-4ad3-a726-85f5280cf1c4" />
+*   **[Split Dataset (학습용 데이터)](https://drive.google.com/file/d/1FJnKN8dj6yr1U8h476PKUWfaoWc2WpsQ/view?usp=sharing)**: Train/Val 분할 및 YOLO 형식 변환 완료 데이터
 
-*   **[Split Dataset (학습용 데이터)](https://drive.google.com/file/d/1FJnKN8dj6yr1U8h476PKUWfaoWc2WpsQ/view?usp=sharing)**: Train/Val/ 분할 및 YOLO 형식 변환 완료 데이터
-*   <img width="211" height="21" alt="image" src="https://github.com/user-attachments/assets/b415837d-d9a1-4dde-b40b-3c64fe8fd5dd" />
+---
 
-
-## 🛠️ 3. 기술 스택 (Tech Stack)
+### 💻 5. 기술 스택 (Tech Stack)
 *   **Language:** Python 3.x
 *   **Model:** YOLOv11 (Ultralytics)
 *   **Library:** OpenCV, PyTorch, Albumentations, Pandas, Matplotlib
 *   **Environment:** CUDA 12.1 기반 GPU 가속 환경
 
-## 🚀 4. 시작하기 (Quick Start)
+---
 
-### 가상환경 설정 및 라이브러리 설치
+### 🚀 6. 시작하기 (Quick Start)
+
+#### 가상환경 설정 및 라이브러리 설치
 ```bash
 # 가상환경 생성 및 활성화
 python -m venv venv
@@ -45,11 +49,7 @@ python -m venv venv
 
 # 필수 라이브러리 설치
 pip install -r requirements.txt
-# 코드 실행
-가상환경 위에서 1데이터분할.py부터 6모델학습.py 까지 실행
-학습용 데이터를 다운 받았으면 6모델학습.py만 실행해도 무방
 ```
-
 
 #### 코드 실행 순서
 각 스크립트는 파일명 앞의 숫자에 따라 순차적으로 실행해 주세요.
@@ -58,7 +58,7 @@ pip install -r requirements.txt
 
 ---
 
-### 📜 5. 소스코드 상세 설명 (Workflow)
+### 📜 7. 소스코드 상세 설명 (Workflow)
 
 프로젝트는 데이터 전처리부터 모델 학습, 예측까지 총 7단계의 파이프라인으로 구성되어 있습니다.
 
