@@ -70,9 +70,9 @@ pip install -r requirements.txt
 #### [Workflow 시각화]
 1. 데이터셋 균형화 → 2. 데이터 분포 분석 → 3. 라벨 포맷 검사 → 4. Seg-to-Det 변환 → 5. 증강(Augmentation) → 6. YOLOv11 학습 → 7. 실시간 예측
 
-| 순서 | 파일명 | 주요 역할 및 기능 | 이미지 |
+| 순서 | 파일명 | 주요 역할 및 기능 | 코드 수행 결과 |
 | :---: | :--- | :--- | :--- |
-| **1** | `1데이터분할.py` | 클래스별 원본 데이터 수집 및 **Train/Validation(8:2)** 데이터셋 자동 생성. `dataset.yaml` 생성 및 데이터 무결성 검사 수행. | <img src="https://github.com/user-attachments/assets/60338f53-fb94-4108-9152-400bb1fb3a78" width="500" /> |
+| **1** | `1데이터분할.py` | 클래스별 원본 데이터 수집 및 **Train/Validation(8:2)** 데이터셋 자동 생성. `dataset.yaml` 생성 및 데이터 무결성 검사 수행. |<img width="689" height="638" alt="image" src="https://github.com/user-attachments/assets/a1381ae7-5230-4f34-895f-4e74e9ccb748" />|
 | **2** | `2데이터셋구성확인.py` | 생성된 데이터셋의 클래스별 분포 분석. 데이터 불균형 확인 및 **증강 필요 수량 자동 계산**. | <img src="https://github.com/user-attachments/assets/fbee09b7-4289-4eb6-82ef-3c64e8fe4579" width="500" /> |
 | **3** | `3txt형식파악.py` | YOLO 라벨 파일 형식 분석. **Detection(Box)** 과 **Segmentation(Polygon)** 형식 구분 및 오류 라벨 탐지. | <img src="https://github.com/user-attachments/assets/7671abde-7934-4b82-a143-0aba24351588" width="500" /> |
 | **4** | `4txt방식변경.py` | Segmentation 형식을 **YOLO Detection 형식(Center x, y, w, h)**으로 일괄 변환하여 데이터 형식 통일. | <img src="https://github.com/user-attachments/assets/9f8d14a6-7888-466f-8b1d-0764a5302156" width="450" /><br><img src="https://github.com/user-attachments/assets/b0b2131f-52b0-4687-85f8-ffe5e3e52f86" width="450" /> |
