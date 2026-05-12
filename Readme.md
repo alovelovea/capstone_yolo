@@ -27,7 +27,12 @@
 *(※ 다운로드 후 프로젝트 루트 디렉토리에 압축을 풀어주세요. 루트 디렉토리 이름: `combined_data_v2`)*
 
 *   **[Original Dataset (원본 데이터)](https://drive.google.com/file/d/1mlqhVGrsvCygL8PqU9c8SC0pHlXK512k/view?usp=drive_link)**: 클래스별 원본 데이터셋
+*   <img width="263" height="367" alt="image" src="https://github.com/user-attachments/assets/f39bd96b-ad55-4499-853e-59e420e1f782" />
+
 *   **[Split Dataset (학습용 데이터)](https://drive.google.com/file/d/1FJnKN8dj6yr1U8h476PKUWfaoWc2WpsQ/view?usp=sharing)**: Train/Val 분할 및 YOLO 형식 변환 완료 데이터
+*   <img width="268" height="29" alt="image" src="https://github.com/user-attachments/assets/d8d53bb5-af26-47d7-99bd-292ceba114a4" />
+
+
 
 ---
 
@@ -54,7 +59,7 @@ pip install -r requirements.txt
 #### 코드 실행 순서
 각 스크립트는 파일명 앞의 숫자에 따라 순차적으로 실행해 주세요.
 * **전체 공정 실행 시:** `1` → `2` → `3` → `4` → `5` → `6` → `7` 순서로 실행
-* **이미 가공된 [학습용 데이터]를 다운로드한 경우:** 바로 `6모델학습.py` 실행 가능
+* **이미 가공된 [학습용 데이터]를 다운로드한 경우:** 바로 `6모델학습.py` 실행 가능 or `7predict.py`만 실행 가능
 
 ---
 
