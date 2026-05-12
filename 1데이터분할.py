@@ -1,5 +1,3 @@
-# make_balanced_dataset.py
-
 
 import random
 import shutil
@@ -12,7 +10,8 @@ from collections import defaultdict
 
 random.seed(42)
 
-BASE_DIR = Path(r"C:\Users\alswo\Desktop\combined_data_v2")
+# 현재 파이썬 파일 기준 경로
+BASE_DIR = Path(__file__).resolve().parent
 
 OUTPUT_DIR = BASE_DIR / "balanced_dataset"
 
@@ -304,7 +303,8 @@ for idx, (img_path, label_path) in enumerate(train_pairs):
     copy_pair(
         img_path,
         label_path,
-        "train",
+        "train"
+        ,
         prefix
     )
 
@@ -327,8 +327,8 @@ final_stats["mix"]["total"] = len(mix_pairs)
 # dataset.yaml 생성
 # =========================================================
 
-yaml_text = f"""
-path: {OUTPUT_DIR}
+yaml_text = """
+path: .
 
 train: images/train
 val: images/valid

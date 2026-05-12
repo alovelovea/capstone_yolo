@@ -1,4 +1,3 @@
-# check_label_format.py
 
 from pathlib import Path
 from collections import defaultdict
@@ -7,7 +6,8 @@ from collections import defaultdict
 # 경로 설정
 # =========================================================
 
-BASE_DIR = Path(r"C:\Users\alswo\Desktop\combined_data_v2")
+# 현재 파이썬 파일 기준 경로
+BASE_DIR = Path(__file__).resolve().parent
 
 CLASSES = [
     "can",
@@ -62,7 +62,7 @@ def detect_label_type(txt_path):
         with open(txt_path, "r", encoding="utf-8") as f:
             lines = f.readlines()
 
-    except Exception as e:
+    except Exception:
 
         print(f"[ERROR] 파일 읽기 실패: {txt_path}")
         return "invalid"
@@ -81,34 +81,25 @@ def detect_label_type(txt_path):
         if len(parts) == 0:
             continue
 
-        # ---------------------------------------------
         # 숫자 변환 가능한지 검사
-        # ---------------------------------------------
-
         try:
-            nums = list(map(float, parts[1:]))
+            list(map(float, parts[1:]))
+
         except:
             return "invalid"
 
-        # ---------------------------------------------
-        # Detection 형식 검사
+        # =================================================
+        # Detection 검사
         # class x y w h
-        # 총 5개
-        # ---------------------------------------------
+        # =================================================
 
         if len(parts) != 5:
             is_detection = False
 
-        # ---------------------------------------------
-        # Segmentation 형식 검사
+        # =================================================
+        # Segmentation 검사
         # class x1 y1 x2 y2 ...
-        #
-        # 최소:
-        # class + x1 y1 x2 y2 x3 y3
-        # => 최소 7개
-        #
-        # 좌표 개수는 짝수여야 함
-        # ---------------------------------------------
+        # =================================================
 
         coord_count = len(parts) - 1
 
@@ -118,9 +109,9 @@ def detect_label_type(txt_path):
         ):
             is_segmentation = False
 
-    # -------------------------------------------------
+    # =====================================================
     # 최종 판별
-    # -------------------------------------------------
+    # =====================================================
 
     if is_detection:
         return "detection"
@@ -132,7 +123,7 @@ def detect_label_type(txt_path):
         return "invalid"
 
 # =========================================================
-# 클래스 추출 함수
+# 클래스 추출
 # =========================================================
 
 def extract_class_name(folder_name):
@@ -195,64 +186,22 @@ for cls in CLASSES:
     print(f"Segmentation    : {seg}")
     print(f"Invalid         : {inv}")
 
-print("\n================================================")
-print("[완료] 분석 종료")
-print("================================================")
 # =========================================================
-# 최종 Detection / Segmentation 재검사
+# 전체 segmentation 존재 여부 검사
 # =========================================================
 
-print("\n================================================")
-print("최종 포맷 재검사")
-print("================================================")
-
-for label_dir in LABEL_DIRS:
-
-    txt_files = list(label_dir.glob("*.txt"))
-
-    for txt_path in txt_files:
-
-        try:
-
-            with open(txt_path, "r", encoding="utf-8") as f:
-                lines = f.readlines()
-
-        except:
-            continue
-
-        for line in lines:
-
-            parts = line.strip().split()
-
-            if len(parts) == 0:
-                continue
-
-            if is_detection(parts):
-                final_detection_count += 1
-
-            elif is_segmentation(parts):
-                final_segmentation_count += 1
-
-# =========================================================
-# 최종 결과
-# =========================================================
-
-print("\n================================================")
-print("최종 결과")
-print("================================================")
-
-print(f"Detection 유지 : {detection_count}")
-print(f"Segmentation 변환 : {converted_count}")
-print(f"Invalid : {invalid_count}")
+total_segmentation = sum(
+    stats[cls]["segmentation"]
+    for cls in CLASSES
+)
 
 print("\n================================================")
 print("최종 라벨 포맷 상태")
 print("================================================")
 
-print(f"최종 Detection 개수   : {final_detection_count}")
-print(f"최종 Segmentation 개수: {final_segmentation_count}")
+print(f"전체 Segmentation 개수 : {total_segmentation}")
 
-if final_segmentation_count == 0:
+if total_segmentation == 0:
 
     print("\n[OK] 모든 라벨이 Detection 형식으로 통일됨")
 
@@ -261,5 +210,5 @@ else:
     print("\n[WARNING] 아직 Segmentation 라벨이 남아있음")
 
 print("\n================================================")
-print("[완료] balanced_dataset 전체 detection 통일 완료")
+print("[완료] 분석 종료")
 print("================================================")

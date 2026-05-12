@@ -1,19 +1,18 @@
-#생성한 balanced_dataset에 txt를 변경함. 원본label은 변경 x
-# convert_balanced_dataset_seg_to_det.py
-
+# 생성한 balanced_dataset에 txt를 변경함. 원본 label은 변경 X
 from pathlib import Path
 
 # =========================================================
 # 경로 설정
 # =========================================================
 
-BASE_DIR = Path(
-    r"C:\Users\alswo\Desktop\combined_data_v2\balanced_dataset"
-)
+# 현재 파이썬 파일 기준 경로
+BASE_DIR = Path(__file__).resolve().parent
+
+BALANCED_DIR = BASE_DIR / "balanced_dataset"
 
 LABEL_DIRS = [
-    BASE_DIR / "labels/train",
-    BASE_DIR / "labels/valid"
+    BALANCED_DIR / "labels/train",
+    BALANCED_DIR / "labels/valid"
 ]
 
 # =========================================================
@@ -94,6 +93,11 @@ for label_dir in LABEL_DIRS:
     print(f"[START] {label_dir}")
     print("================================================")
 
+    if not label_dir.exists():
+
+        print(f"[WARNING] 폴더 없음: {label_dir}")
+        continue
+
     txt_files = list(label_dir.glob("*.txt"))
 
     print(f"[INFO] txt 파일 수: {len(txt_files)}")
@@ -109,7 +113,7 @@ for label_dir in LABEL_DIRS:
             with open(txt_path, "r", encoding="utf-8") as f:
                 lines = f.readlines()
 
-        except Exception as e:
+        except Exception:
 
             dir_invalid += 1
             invalid_count += 1
@@ -130,16 +134,16 @@ for label_dir in LABEL_DIRS:
 
             # 숫자 검사
             try:
-                _ = list(map(float, parts[1:]))
+                list(map(float, parts[1:]))
 
             except:
 
                 file_invalid = True
                 continue
 
-            # -------------------------------------------------
+            # =================================================
             # Detection
-            # -------------------------------------------------
+            # =================================================
 
             if is_detection(parts):
 
@@ -148,9 +152,9 @@ for label_dir in LABEL_DIRS:
                 dir_detection += 1
                 detection_count += 1
 
-            # -------------------------------------------------
+            # =================================================
             # Segmentation
-            # -------------------------------------------------
+            # =================================================
 
             elif is_segmentation(parts):
 
@@ -170,17 +174,17 @@ for label_dir in LABEL_DIRS:
                     print(f"[ERROR] 변환 실패: {txt_path}")
                     print(e)
 
-            # -------------------------------------------------
+            # =================================================
             # Invalid
-            # -------------------------------------------------
+            # =================================================
 
             else:
 
                 file_invalid = True
 
-        # -----------------------------------------------------
+        # =====================================================
         # invalid 파일 로그
-        # -----------------------------------------------------
+        # =====================================================
 
         if file_invalid:
 
@@ -189,9 +193,9 @@ for label_dir in LABEL_DIRS:
 
             print(f"[WARNING] invalid 형식: {txt_path.name}")
 
-        # -----------------------------------------------------
+        # =====================================================
         # overwrite 저장
-        # -----------------------------------------------------
+        # =====================================================
 
         try:
 
@@ -211,9 +215,9 @@ for label_dir in LABEL_DIRS:
 
     print(f"\n[RESULT] {label_dir.name}")
 
-    print(f"Detection 유지 : {dir_detection}")
+    print(f"Detection 유지     : {dir_detection}")
     print(f"Segmentation 변환 : {dir_converted}")
-    print(f"Invalid : {dir_invalid}")
+    print(f"Invalid           : {dir_invalid}")
 
 # =========================================================
 # 최종 결과
@@ -223,9 +227,9 @@ print("\n================================================")
 print("최종 결과")
 print("================================================")
 
-print(f"Detection 유지 : {detection_count}")
+print(f"Detection 유지     : {detection_count}")
 print(f"Segmentation 변환 : {converted_count}")
-print(f"Invalid : {invalid_count}")
+print(f"Invalid           : {invalid_count}")
 
 print("\n================================================")
 print("[완료] balanced_dataset 전체 detection 통일 완료")

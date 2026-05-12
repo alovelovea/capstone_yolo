@@ -1,4 +1,3 @@
-# plastic_augmentation.py
 
 import random
 from pathlib import Path
@@ -12,7 +11,8 @@ import albumentations as A
 
 random.seed(42)
 
-BASE_DIR = Path(r"C:\Users\alswo\Desktop\combined_data_v2")
+# 현재 파이썬 파일 기준 경로
+BASE_DIR = Path(__file__).resolve().parent
 
 DATASET_DIR = BASE_DIR / "balanced_dataset"
 
@@ -51,12 +51,12 @@ transform = A.Compose(
 
     ],
 
-   bbox_params=A.BboxParams(
-    format='yolo',
-    label_fields=['class_labels'],
-    min_visibility=0.1,
-    clip=True
-)
+    bbox_params=A.BboxParams(
+        format='yolo',
+        label_fields=['class_labels'],
+        min_visibility=0.1,
+        clip=True
+    )
 )
 
 # =========================================================
@@ -89,10 +89,7 @@ def read_yolo_label(label_path):
 
             x, y, w, h = map(float, parts[1:])
 
-            # =================================================
             # bbox 범위 검사
-            # =================================================
-
             if (
                 x < 0 or x > 1 or
                 y < 0 or y > 1 or
@@ -233,7 +230,6 @@ for aug_idx in range(need_aug):
 
         # =====================================================
         # bbox clipping
-        # floating point 오차 방지
         # =====================================================
 
         fixed_bboxes = []
