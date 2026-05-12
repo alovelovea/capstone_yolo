@@ -328,7 +328,7 @@ final_stats["mix"]["total"] = len(mix_pairs)
 # =========================================================
 
 yaml_text = """
-path: .
+path: ./balanced_dataset
 
 train: images/train
 val: images/valid
