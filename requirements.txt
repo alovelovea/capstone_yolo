@@ -1,14 +1,12 @@
-# --- 핵심 프레임워크 (GPU 지원 버전) ---
---index-url https://download.pytorch.org/whl/cu121
+--extra-index-url https://download.pytorch.org/whl/cu121
+
 torch
 torchvision
 torchaudio
 
-# --- 객체 탐지 및 이미지 처리 ---
 ultralytics
 opencv-python
 albumentations
 
-# --- 데이터 처리 및 시각화 ---
 pandas
 matplotlib
