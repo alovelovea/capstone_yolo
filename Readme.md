@@ -29,7 +29,7 @@
 *   **[Original Dataset (원본 데이터)](https://drive.google.com/file/d/1mlqhVGrsvCygL8PqU9c8SC0pHlXK512k/view?usp=drive_link)**: 클래스별 원본 데이터셋
 *   <img width="263" height="367" alt="image" src="https://github.com/user-attachments/assets/f39bd96b-ad55-4499-853e-59e420e1f782" />
 
-*   **[Split Dataset (학습용 데이터)](https://drive.google.com/file/d/1FJnKN8dj6yr1U8h476PKUWfaoWc2WpsQ/view?usp=sharing)**: Train/Val 분할 및 YOLO 형식 변환 완료 데이터
+*   **[Split Dataset (학습용 데이터)](https://drive.google.com/file/d/1EOPrwIAy1ZEOy5Yd8svPUzdzEJv92XuB/view?usp=sharing)**: Train/Val 분할 및 YOLO 형식 변환 완료 데이터
 *   <img width="268" height="29" alt="image" src="https://github.com/user-attachments/assets/d8d53bb5-af26-47d7-99bd-292ceba114a4" />
 
 
