@@ -70,16 +70,15 @@ pip install -r requirements.txt
 #### [Workflow 시각화]
 1. 데이터셋 균형화 → 2. 데이터 분포 분석 → 3. 라벨 포맷 검사 → 4. Seg-to-Det 변환 → 5. 증강(Augmentation) → 6. YOLOv11 학습 → 7. 실시간 예측
 
-| 순서 | 파일명 | 주요 역할 및 기능 |
-| :---: | :--- | :--- |
-| **1** | `1데이터분할.py` | 클래스별 원본 데이터(`_1`, `_over2`, `mix_class`)를 수집하여 목표 개수(2000장)에 맞게 균형화하고, **Train/Validation(8:2)** 데이터셋(`balanced_dataset`)을 자동 생성합니다. 또한 `dataset.yaml` 생성 및 데이터 무결성 검사를 수행합니다. |
-| **2** | `2데이터셋구성확인.py` | 생성된 데이터셋의 클래스별 분포를 분석합니다. 특히 데이터 불균형 여부를 확인하고, 부족한 클래스(Plastic 등)의 **증강 필요 수량을 자동 계산**합니다. |
-| **3** | `3txt형식파악.py` | YOLO 라벨 파일(`.txt`)의 형식을 분석하여 **Detection 형식(class x y w h)**과 **Segmentation 형식**을 구분하고, 잘못된 라벨(invalid)을 탐지합니다. |
-| **4** | `4txt방식변경.py` | Segmentation 형식(Polygon 좌표)을 YOLO **Detection 형식(Normalized Center x, y, w, h)**으로 변환하여 전체 데이터셋 라벨 형식을 통일합니다. |
-| **5** | `5플라스틱augmentation적용.py` | **Albumentations** 기반 데이터 증강을 수행하여 부족한 클래스 데이터를 보강합니다. 밝기/색상 변화, Blur, 좌우 반전 등을 적용하며 Bounding Box 좌표를 자동 보정합니다. |
-| **6** | `6모델학습.py` | **Ultralytics YOLOv11n** 모델을 활용하여 학습을 진행합니다. GPU(CUDA) 가속, Mosaic/MixUp 증강, 조기 종료(Early Stopping) 등을 포함하며 최종 `best.pt` 가중치를 생성합니다. |
-| **7** | `7predict.py` | 학습 여부와 상관없이 weights/best.pt 파일만 있다면 즉시 추론할 수 있는 OpenCV 기반 인터랙티브 뷰어입니다. 실행 후 엔터만 누르면 기본 모델이 로드되며, 필요 시 경로를 직접 입력할 수도 있습니다. 방향키(또는 A/S/W/D)를 통해 이미지 이동 및 **탐지 민감도(Confidence)**를 실시간으로 조절하며 결과를 확인할 수 있습니다. |
-
+| 순서 | 파일명 | 주요 역할 및 기능 | 이미지 |
+| :---: | :--- | :--- | :--- |
+| **1** | `1데이터분할.py` | 클래스별 원본 데이터 수집 및 **Train/Validation(8:2)** 데이터셋 자동 생성. `dataset.yaml` 생성 및 데이터 무결성 검사 수행. | <img src="https://github.com/user-attachments/assets/60338f53-fb94-4108-9152-400bb1fb3a78" width="500" /> |
+| **2** | `2데이터셋구성확인.py` | 생성된 데이터셋의 클래스별 분포 분석. 데이터 불균형 확인 및 **증강 필요 수량 자동 계산**. | <img src="https://github.com/user-attachments/assets/fbee09b7-4289-4eb6-82ef-3c64e8fe4579" width="500" /> |
+| **3** | `3txt형식파악.py` | YOLO 라벨 파일 형식 분석. **Detection(Box)** 과 **Segmentation(Polygon)** 형식 구분 및 오류 라벨 탐지. | <img src="https://github.com/user-attachments/assets/7671abde-7934-4b82-a143-0aba24351588" width="500" /> |
+| **4** | `4txt방식변경.py` | Segmentation 형식을 **YOLO Detection 형식(Center x, y, w, h)**으로 일괄 변환하여 데이터 형식 통일. | <img src="https://github.com/user-attachments/assets/9f8d14a6-7888-466f-8b1d-0764a5302156" width="450" /><br><img src="https://github.com/user-attachments/assets/b0b2131f-52b0-4687-85f8-ffe5e3e52f86" width="450" /> |
+| **5** | `5플라스틱augmentation적용.py` | **Albumentations** 기반 데이터 증강(밝기, Blur, 반전 등) 수행 및 부족한 클래스 데이터 보강. | <img src="https://github.com/user-attachments/assets/ddbcc5e3-5c41-4556-9f15-eb3e31124d4a" width="450" /><br><img src="https://github.com/user-attachments/assets/4365727d-7226-4502-a4d2-9868973c2c69" width="450" /> |
+| **6** | `6모델학습.py` | **YOLOv11n** 활용 학습 진행. GPU 가속, Mosaic/MixUp 적용 및 최적 가중치(`best.pt`) 생성. | <img width="940" height="471" alt="image" src="https://github.com/user-attachments/assets/567f74b4-4e14-4092-8d8d-e173d85dd753" />
+| **7** | `7predict.py` | OpenCV 기반 인터랙티브 뷰어. 방향키를 이용해 **탐지 민감도(Confidence)**를 실시간 조절하며 결과 확인. | <img src="https://github.com/user-attachments/assets/c5f1f20c-cab5-4bef-8083-16d5ca8a29f2" width="400" /> |
 ---
 
 ### ⚠️ 주의사항 (Git Management)
