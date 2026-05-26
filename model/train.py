@@ -10,8 +10,11 @@ import torch
 # 경로 설정
 # =========================================================
 
-# 현재 파이썬 파일 기준 경로
-BASE_DIR = Path(__file__).resolve().parent
+# 현재 파일: model/train.py
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# model 폴더
+MODEL_DIR = BASE_DIR / "model"
 
 # dataset.yaml 경로
 DATASET_YAML = BASE_DIR / "balanced_dataset" / "dataset.yaml"
@@ -28,7 +31,7 @@ print(f"--- 학습 시작 장치: {device} ---")
 # 모델 로드
 # =========================================================
 
-model = YOLO("yolo11n.pt")
+model = YOLO(str(MODEL_DIR / "yolo11n.pt"))
 
 # =========================================================
 # 학습 시작
@@ -49,6 +52,7 @@ if __name__ == '__main__':
         # =================================================
 
         epochs=100,
+
         imgsz=640,
 
         batch=16,
@@ -83,7 +87,7 @@ if __name__ == '__main__':
         # 저장 설정
         # =================================================
 
-        project='waste_project',
+        project=str(MODEL_DIR / "weights"),
 
         name='yolo11n_v1_balanced',
 
@@ -94,7 +98,9 @@ if __name__ == '__main__':
         # =================================================
 
         pretrained=True,
+        project=str(MODEL_DIR / "runs" / "detect"),
 
+        name='waste_project/yolo11n_v1_balanced',
         optimizer='auto',
 
         val=True,
@@ -104,5 +110,5 @@ if __name__ == '__main__':
 
     print("\n--- 학습이 완료되었습니다. ---")
 
-    print(f"최종 결과 저장 경로:")
+    print("최종 결과 저장 경로:")
     print(results.save_dir)

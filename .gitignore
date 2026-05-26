@@ -1,10 +1,5 @@
 venv/
 runs/
 balanced_dataset/
-can_*/
-glass_*/
-mix_class/
-paper_*/
-pet_*/
-plastic*/
+origin_data/
 testdata/

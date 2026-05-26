@@ -1,18 +1,31 @@
 import cv2
 import os
 from pathlib import Path
+
 from ultralytics import YOLO
 
 # =========================================================
 # 기본 경로 설정
 # =========================================================
 
-BASE_DIR = Path(__file__).resolve().parent
+# 현재 파일: model/predict.py
+BASE_DIR = Path(__file__).resolve().parent.parent
 
+# model 폴더
+MODEL_DIR = BASE_DIR / "model"
+
+# 기본 best.pt 경로
 default_model_path = (
-    BASE_DIR / "weights" / "best.pt"
+    MODEL_DIR
+    / "runs"
+    / "detect"
+    / "waste_project"
+    / "yolo11n_v1_balanced"
+    / "weights"
+    / "best.pt"
 )
 
+# 테스트 이미지 폴더
 source_dir = BASE_DIR / "testdata"
 
 # =========================================================
@@ -30,9 +43,11 @@ custom_path = input(
 
 # 엔터 입력 시 기본 모델 사용
 if custom_path == "":
+
     model_path = default_model_path
 
 else:
+
     model_path = Path(custom_path)
 
 # =========================================================
@@ -82,6 +97,7 @@ if not img_files:
     )
 
 img_idx = 0
+
 conf_threshold = 0.5
 
 # =========================================================
@@ -152,22 +168,36 @@ while True:
 
     key = cv2.waitKeyEx(0)
 
+    # 종료
     if key == ord('q'):
+
         break
 
+    # 다음 이미지
     elif key == 0x270000 or key == ord('d'):
-        img_idx = (img_idx + 1) % len(img_files)
 
+        img_idx = (
+            img_idx + 1
+        ) % len(img_files)
+
+    # 이전 이미지
     elif key == 0x250000 or key == ord('a'):
-        img_idx = (img_idx - 1) % len(img_files)
 
+        img_idx = (
+            img_idx - 1
+        ) % len(img_files)
+
+    # threshold 증가
     elif key == 0x260000 or key == ord('w'):
+
         conf_threshold = min(
             1.0,
             conf_threshold + 0.02
         )
 
+    # threshold 감소
     elif key == 0x280000 or key == ord('s'):
+
         conf_threshold = max(
             0.0,
             conf_threshold - 0.02
