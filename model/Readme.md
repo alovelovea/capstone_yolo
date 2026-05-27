@@ -12,11 +12,11 @@
 
 | 단계 | 주요 역할 | 기술적 상세 및 상세 기능 | 수행 결과 |
 |:---:|:---:|:---|:---:|
-| **1** | **데이터셋 구축** | 원본 데이터 분류, Train/Validation(8:2) 분할, `dataset.yaml` 자동 생성, 데이터 무결성(파일 손상/경로/범위) 검사 | <img src="https://github.com/user-attachments/assets/a1381ae7-5230-4f34-895f-4e74e9ccb748" width="350"/> |
-| **2** | **분포 분석** | 클래스별 인스턴스 수 및 박스 크기 분포 히스토그램 시각화, 불균형 판단 임계값(Threshold) 설정, 부족한 데이터 증강 수량 자동 계산 | <img src="https://github.com/user-attachments/assets/fbee09b7-4289-4eb6-82ef-3c64e8fe4579" width="350"/> |
-| **3** | **라벨 분석** | YOLO 라벨 구조(Box/Polygon) 식별, 비정상 좌표 및 면적 0인 박스 등 이상치 탐지, 학습 적합성 검증 | <img src="https://github.com/user-attachments/assets/7671abde-7934-4b82-a143-0aba24351588" width="350"/> |
-| **4** | **형식 표준화** | Segmentation(폴리곤) 데이터를 YOLO Detection(Center x, y, w, h) 형식으로 변환, 정밀도 손실 방지를 위한 부동소수점 최적화 처리 | <img src="https://github.com/user-attachments/assets/9f8d14a6-7888-466f-8b1d-0764a5302156" width="350"/><br><img src="https://github.com/user-attachments/assets/b0b2131f-52b0-4687-85f8-ffe5e3e52f86" width="350"/> |
-| **5** | **데이터 증강** | Albumentations 라이브러리를 활용한 기하학적 변환(Brightness, Blur, Flip 등) 및 라벨 좌표 동기화, 부족한 클래스 보강을 통한 강건성 확보 | <img src="https://github.com/user-attachments/assets/ddbcc5e3-5c41-4556-9f15-eb3e31124d4a" width="350"/><br><img src="https://github.com/user-attachments/assets/4365727d-7226-4502-a4d2-9868973c2c69" width="350"/> |
+| **1** | **데이터셋 구축** | 클래스별 원본 데이터를 기반으로 Train/Validation(8:2) 자동 분할 수행. 라벨 존재 여부·빈 라벨·이미지-라벨 불일치 등 데이터 무결성 검사를 통해 비정상 데이터를 제거하고, 클래스 균형 보정 및 `dataset.yaml` 자동 생성을 통해 YOLO 학습용 `balanced_dataset` 구축. | <img src="https://github.com/user-attachments/assets/a1381ae7-5230-4f34-895f-4e74e9ccb748" width="350"/> |
+| **2** | **분포 분석** | Train/Validation 데이터셋의 클래스별 분포 및 비율을 자동 분석하고, 클래스 불균형 여부를 확인. 클래스별 총 데이터 수와 학습 비율을 계산하여 부족한 클래스의 추가 증강 필요 수량 자동 산출. | <img src="https://github.com/user-attachments/assets/fbee09b7-4289-4eb6-82ef-3c64e8fe4579" width="350"/> |
+| **3** | **라벨 분석** | YOLO 라벨 파일을 대상으로 Detection(Box)·Segmentation(Polygon) 형식을 자동 식별하고, 비정상·빈 라벨 등 오류 데이터를 검사. 클래스별 라벨 형식 통계를 분석하여 학습 가능한 Detection 형식으로의 통일 여부 검증. | <img src="https://github.com/user-attachments/assets/7671abde-7934-4b82-a143-0aba24351588" width="350"/> |
+| **4** | **형식 표준화** | Segmentation(Polygon) 라벨 데이터를 YOLO Detection(Box) 형식(`class x_center y_center width height`)으로 자동 변환하고, 좌표 범위 보정 및 부동소수점 정밀도 처리를 수행. 또한 invalid 라벨 검사를 통해 전체 `balanced_dataset`의 Detection 형식 통일 여부 검증. | <img src="https://github.com/user-attachments/assets/9f8d14a6-7888-466f-8b1d-0764a5302156" width="350"/><br><img src="https://github.com/user-attachments/assets/b0b2131f-52b0-4687-85f8-ffe5e3e52f86" width="350"/> |
+| **5** | **데이터 증강** | Albumentations 기반 Horizontal Flip, Brightness/Contrast, HSV 변환, Gaussian Blur 등의 데이터 증강 기법을 적용하여 부족한 `plastic` 클래스 데이터 자동 보강. 증강 과정에서 YOLO Bounding Box 좌표를 동기화·보정하고, 범위 검사 및 clipping 처리를 통해 학습 가능한 라벨 정합성 유지. | <img src="https://github.com/user-attachments/assets/ddbcc5e3-5c41-4556-9f15-eb3e31124d4a" width="350"/><br><img src="https://github.com/user-attachments/assets/4365727d-7226-4502-a4d2-9868973c2c69" width="350"/> |
 ---
 
 ### 2. 모델 학습 (`train.py`)
