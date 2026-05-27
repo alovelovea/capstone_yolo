@@ -29,8 +29,24 @@
 
 ### 3. 예측 (`predict.py`)
 
-| 주요 역할 및 기능 | 코드 수행 결과 |
-| :--- | :--- |
-| OpenCV 기반 인터랙티브 뷰어. 방향키를 이용해 **탐지 민감도(Confidence)** 를 실시간 조절하며 결과 확인. | <img src="https://github.com/user-attachments/assets/c5f1f20c-cab5-4bef-8083-16d5ca8a29f2" width="400" /> |
-
+<table>
+  <thead>
+    <tr>
+      <th style="width: 600px;">주요 역할 및 기능</th>
+      <th>수행 결과</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        학습된 YOLO 모델의 성능을 현장에서 즉각적으로 검증할 수 있는 인터랙티브 추론 뷰어입니다. <code>testdata</code> 폴더에 이미지를 저장하여 즉시 모델의 탐지 결과를 시각화하고, 파라미터를 실시간으로 튜닝하며 성능을 분석할 수 있습니다.<br><br>
+        <strong>⌨️ [단축키 가이드]</strong><br>
+        • <b>이미지 이동</b>: <code>←</code>/<code>→</code> 또는 <code>a</code>/<code>d</code><br>
+        • <b>민감도(Conf)</b>: <code>↑</code>/<code>↓</code> 또는 <code>w</code>/<code>s</code><br>
+        • <b>프로그램 종료</b>: <code>q</code>
+      </td>
+      <td align="center"><img src="https://github.com/user-attachments/assets/c5f1f20c-cab5-4bef-8083-16d5ca8a29f2" width="400" /></td>
+    </tr>
+  </tbody>
+</table>
 
