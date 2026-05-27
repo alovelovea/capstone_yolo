@@ -11,7 +11,7 @@
  ### 1. proprecessing.py
 
 | 단계 | 주요 역할 | 기술적 상세 및 상세 기능 | 수행 결과 |
-| :---: | :--- | :--- | :--- |
+| :---: | :---: | :--- | :--- |
 | **1** | 데이터셋 구축 | 원본 데이터 분류, Train/Validation(8:2) 분할, `dataset.yaml` 자동 생성, 데이터 무결성(파일 손상/경로/범위) 검사. | <img src="https://github.com/user-attachments/assets/a1381ae7-5230-4f34-895f-4e74e9ccb748" /> |
 | **2** | 분포 분석 | 클래스별 인스턴스 수 및 박스 크기 분포 히스토그램 시각화, 불균형 판단 임계값(Threshold) 설정, 부족한 데이터 증강 수량 자동 계산. | <img src="https://github.com/user-attachments/assets/fbee09b7-4289-4eb6-82ef-3c64e8fe4579" /> |
 | **3** | 라벨 분석 | YOLO 라벨 구조(Box/Polygon) 식별, 비정상 좌표 및 면적 0인 박스 등 이상치 탐지, 학습 적합성 검증. | <img src="https://github.com/user-attachments/assets/7671abde-7934-4b82-a143-0aba24351588" /> |
