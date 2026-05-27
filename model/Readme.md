@@ -22,8 +22,8 @@
 ### 2. 모델 학습 (`train.py`)
 
 | 주요 역할 및 기능 | 코드 수행 결과 |
-| :--- | :--- |
-| **YOLOv11n** 활용 학습 진행. GPU 가속, Mosaic/MixUp 적용 및 최적 가중치(`best.pt`) 생성. | <img width="940" height="471" alt="image" src="https://github.com/user-attachments/assets/567f74b4-4e14-4092-8d8d-e173d85dd753" /> |
+|:---|:---:|
+| 전처리 및 클래스 균형 보정이 완료된 데이터셋을 기반으로 **YOLOv11n** 모델 학습 수행. CUDA 기반 GPU 가속 환경에서 학습을 진행하고, Mosaic·MixUp·HSV 변환 등 다양한 데이터 증강 기법을 적용하여 일반화 성능 향상 및 클래스 불균형 문제를 완화. 학습 과정에서 Validation 성능을 모니터링하며 최적 성능의 가중치(`best.pt`) 자동 저장. | <img src="https://github.com/user-attachments/assets/567f74b4-4e14-4092-8d8d-e173d85dd753" width="1200"/> |
 
 ---
 
@@ -39,7 +39,7 @@
   <tbody>
     <tr>
       <td>
-        학습된 YOLO 모델의 성능을 현장에서 즉각적으로 검증할 수 있는 인터랙티브 추론 뷰어입니다. <code>testdata</code> 폴더에 이미지를 저장하여 즉시 모델의 탐지 결과를 시각화하고, 파라미터를 실시간으로 튜닝하며 성능을 분석할 수 있습니다.<br><br>
+        학습된 YOLO 모델의 성능을 현장에서 즉각적으로 검증할 수 있는 인터랙티브 추론 뷰어. <code>testdata</code> 폴더에 이미지를 저장하여 즉시 모델의 탐지 결과를 시각화하고, 파라미터를 실시간으로 튜닝하며 성능을 분석.<br><br>
         <strong>⌨️ [단축키 가이드]</strong><br>
         • <b>이미지 이동</b>: <code>←</code>/<code>→</code> 또는 <code>a</code>/<code>d</code><br>
         • <b>민감도(Conf)</b>: <code>↑</code>/<code>↓</code> 또는 <code>w</code>/<code>s</code><br>
