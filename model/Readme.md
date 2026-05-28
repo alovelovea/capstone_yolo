@@ -1,5 +1,6 @@
 
 
+
 # 📜  model (Workflow)
 
 
@@ -114,7 +115,18 @@
         • <b>민감도(Conf)</b>: <code>↑</code>/<code>↓</code> 또는 <code>w</code>/<code>s</code><br>
         • <b>프로그램 종료</b>: <code>q</code>
       </td>
-      <td align="center"><img src="https://github.com/user-attachments/assets/c5f1f20c-cab5-4bef-8083-16d5ca8a29f2" width="400" /></td>
+      <td align="center">
+        <table style="border: none; background: none;">
+          <tr>
+            <td><img src="https://github.com/user-attachments/assets/c5f1f20c-cab5-4bef-8083-16d5ca8a29f2" width="220" /></td>
+            <td><img src="https://github.com/user-attachments/assets/76eb6ac8-9a3d-453e-a0b1-9d781060b6f4" width="220" /></td>
+          </tr>
+          <tr>
+            <td><img src="https://github.com/user-attachments/assets/8ae93b47-e9c7-45c4-b422-42e54943fd39" width="220" /></td>
+            <td><img src="https://github.com/user-attachments/assets/5efe4c9a-7761-4948-b381-11ad91932638" width="220" /></td>
+          </tr>
+        </table>
+      </td>
     </tr>
   </tbody>
 </table>
