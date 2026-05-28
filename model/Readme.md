@@ -97,7 +97,7 @@
 
 ---
 
-### 3. 예측 (`predict.py`)
+### 3. 예측 (`realtime_predict.py`)
 
 <table>
   <thead>
