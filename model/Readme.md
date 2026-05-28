@@ -99,6 +99,8 @@
 
 ### 3. 예측 (`realtime_predict.py`)
 
+### 3. 예측 (`realtime_predict.py`)
+
 <table>
   <thead>
     <tr>
@@ -109,11 +111,11 @@
   <tbody>
     <tr>
       <td>
-        학습된 YOLO 모델의 성능을 현장에서 즉각적으로 검증할 수 있는 인터랙티브 추론 뷰어. <code>testdata</code> 폴더에 이미지를 저장하여 즉시 모델의 탐지 결과를 시각화하고, 파라미터를 실시간으로 튜닝하며 성능을 분석.<br><br>
-        <strong>⌨️ [단축키 가이드]</strong><br>
-        • <b>이미지 이동</b>: <code>←</code>/<code>→</code> 또는 <code>a</code>/<code>d</code><br>
-        • <b>민감도(Conf)</b>: <code>↑</code>/<code>↓</code> 또는 <code>w</code>/<code>s</code><br>
-        • <b>프로그램 종료</b>: <code>q</code>
+        학습된 YOLO 모델을 활용하여 <b>웹캠 실시간 영상에서 폐기물을 추적(ByteTrack) 및 분류</b>하는 모듈입니다. 3초 간격으로 탐지 데이터를 수집하고, 다수결 알고리즘을 통해 최종 폐기물 종류를 판별하여 정밀도를 향상시킵니다.<br><br>
+        <strong>⌨️ [운용 가이드]</strong><br>
+        • <b>실시간 분석</b>: 카메라 입력(640x480) 기반 객체 탐지 및 추적<br>
+        • <b>안정화 로직</b>: 3초 주기로 데이터를 버퍼링하여 결과값 보정<br>
+        • <b>종료 키</b>: <code>q</code> (프로그램 즉시 종료)
       </td>
       <td align="center">
         <table style="border: none; background: none;">
@@ -130,4 +132,3 @@
     </tr>
   </tbody>
 </table>
-
