@@ -88,9 +88,9 @@
 
 ---
 
-## 2. 모델 학습 (`train.py`)
+ ### 2. 모델 학습 (`train.py`)
 
-### 🧠 모델 개요
+### 모델 개요
 
 | 항목 | 내용 |
 |:---|:---|
@@ -100,7 +100,7 @@
 | **데이터셋** | `balanced_dataset/dataset.yaml` (클래스 균형 보정 완료) |
 | **검증 방식** | Train/Val 8:2 분할, 매 Epoch 종료 시 자동 검증(`val=True`) |
 
-### ⚙️ 하이퍼파라미터 상세
+### 하이퍼파라미터 상세
 
 | 분류 | 파라미터 | 값 | 설명 |
 |:---|:---|:---:|:---|
@@ -112,33 +112,33 @@
 | **정규화** | `patience` | 15 | Early Stopping 임계 Epoch |
 | | `pretrained` | True | COCO 사전학습 가중치 활용 (Transfer Learning) |
 
-### 🎨 데이터 증강(Augmentation) 전략
+### 데이터 증강(Augmentation) 전략
 
 폐기물 객체는 **촬영 각도·조명·배경 다양성**이 실시간 분류 정확도에 직결됩니다. 이를 보완하기 위해 다양한 증강 기법을 조합 적용했습니다.
 
 | 기법 | 값 | 효과 |
 |:---|:---:|:---|
-| 🎨 **HSV-Hue** | 0.015 | 색조 변화 → 조명·카메라 색감 차이 대응 |
-| 🌈 **HSV-Saturation** | 0.7 | 채도 변화 → 다양한 환경광 시뮬레이션 |
-| 💡 **HSV-Value** | 0.4 | 밝기 변화 → 실내외 조도 변화 대응 |
-| 🔄 **Degrees** | 15.0° | 회전 → 비스듬히 놓인 폐기물 인식력 강화 |
-| ↔️ **Translate** | 0.1 | 평행 이동 → 프레임 내 위치 변화 대응 |
-| 📏 **Scale** | 0.5 | 크기 변화 → 거리 차이 대응 |
-| ↩️ **FlipLR** | 0.5 | 좌우 반전 (확률 50%) |
-| 🧩 **Mosaic** | 1.0 | 4장 이미지 합성 → 작은 객체·다중 객체 학습 강화 |
-| 🎭 **Mixup** | 0.1 | 이미지 혼합 → 경계 모호 케이스에 대한 일반화 |
+| **HSV-Hue** | 0.015 | 색조 변화 → 조명·카메라 색감 차이 대응 |
+| **HSV-Saturation** | 0.7 | 채도 변화 → 다양한 환경광 시뮬레이션 |
+| **HSV-Value** | 0.4 | 밝기 변화 → 실내외 조도 변화 대응 |
+| **Degrees** | 15.0° | 회전 → 비스듬히 놓인 폐기물 인식력 강화 |
+| **Translate** | 0.1 | 평행 이동 → 프레임 내 위치 변화 대응 |
+| **Scale** | 0.5 | 크기 변화 → 거리 차이 대응 |
+| **FlipLR** | 0.5 | 좌우 반전 (확률 50%) |
+| **Mosaic** | 1.0 | 4장 이미지 합성 → 작은 객체·다중 객체 학습 강화 |
+| **Mixup** | 0.1 | 이미지 혼합 → 경계 모호 케이스에 대한 일반화 |
 
 ---
 
-## 3. 학습 결과 분석 (`results.csv`)
+### 3. 학습 결과 분석 (`results.csv`)
 
-### 📊 학습 곡선
+### 학습 곡선
 
 | 학습 지표 그래프 (Loss) | 성능 평가 그래프 (Metrics) |
 |:---:|:---:|
-|<img width="2685" height="885" alt="training_losses" src="https://github.com/user-attachments/assets/cb0eb048-838a-450c-b444-6ba817e9570c" />|<img width="2384" height="1035" alt="training_metrics" src="https://github.com/user-attachments/assets/e431e617-bb73-4c4a-9bd6-ab69c6b2be15" />|
+|<img width="600" alt="training_losses" src="https://github.com/user-attachments/assets/cb0eb048-838a-450c-b444-6ba817e9570c" />|<img width="450" alt="training_metrics" src="https://github.com/user-attachments/assets/e431e617-bb73-4c4a-9bd6-ab69c6b2be15" />|
 
-### 🏆 최종 성능 (Epoch 100 기준)
+### 최종 성능 (Epoch 100 기준)
 
 | 지표 | 최종 값 | 의미 |
 |:---:|:---:|:---|
@@ -147,7 +147,7 @@
 | **Precision** | `0.935` | 탐지한 객체 중 실제 정답 비율 → **오탐(FP) 낮음** |
 | **Recall** | `0.889` | 실제 객체 중 탐지에 성공한 비율 → **누락(FN) 적음** |
 
-### 💡 핵심 분석 요약
+### 핵심 분석 요약
 
 > **1. 안정적 수렴 (Stable Convergence)**
 > Train/Val Loss 격차가 매우 작아 과적합 없이 이상적으로 학습되었습니다. Mosaic·Mixup 증강이 정규화 역할을 효과적으로 수행했음을 확인할 수 있습니다.
