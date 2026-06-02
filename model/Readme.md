@@ -1,6 +1,7 @@
 
 
 
+
 # 📜  model (Workflow)
 
 
@@ -135,7 +136,7 @@
 
 | 학습 지표 그래프 (Loss) | 성능 평가 그래프 (Metrics) |
 |:---:|:---:|
-| 이미지 | 이미지 |
+|<img width="2685" height="885" alt="training_losses" src="https://github.com/user-attachments/assets/cb0eb048-838a-450c-b444-6ba817e9570c" />|<img width="2384" height="1035" alt="training_metrics" src="https://github.com/user-attachments/assets/e431e617-bb73-4c4a-9bd6-ab69c6b2be15" />|
 
 ### 🏆 최종 성능 (Epoch 100 기준)
 
