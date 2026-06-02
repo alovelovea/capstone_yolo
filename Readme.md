@@ -16,9 +16,7 @@
     *   프로젝트의 실용성을 더하기 위해 **팀원들이 직접 일상 속 쓰레기 사진을 촬영하고 수집**하였습니다.
     *   배경, 조명 조건, 쓰레기 훼손 상태 등을 다양하게 구성하여 실제 현장에서 발생할 수 있는 변수를 데이터에 반영함으로써 현실성과 신뢰도를 높였습니다.
     *   **수집 예시**
-| | |
-|:-:|:-:|
-| <img src="https://github.com/user-attachments/assets/a1fa8c2e-f8be-42b3-aa91-0d1102e95357" height="300"> | <img src="https://github.com/user-attachments/assets/0bc4f66d-0997-4601-90be-43412067c3a4" height="300"> |
+<img width="941" height="363" alt="스크린샷 2026-06-02 162536" src="https://github.com/user-attachments/assets/2a1a99fb-27ed-49bf-a746-b6e03c7273a8" />
 
 ---
 
