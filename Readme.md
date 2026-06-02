@@ -34,10 +34,10 @@
 프로젝트에 사용된 데이터는 용량 문제로 외부 링크를 통해 공유합니다.  
 *(※ 다운로드 후 프로젝트 루트 디렉토리에 압축을 풀어주세요. 루트 디렉토리 이름: `combined_data_v4`)*
 
-*   **[Original Dataset (원본 데이터)](https://drive.google.com/file/d/18MwHgJrD6e6gEyg-UQ8ioq3swS5PRxqO/view?usp=sharing)**: 클래스별 원본 데이터셋
+*   **[origin_data(원본 데이터)](https://drive.google.com/file/d/18MwHgJrD6e6gEyg-UQ8ioq3swS5PRxqO/view?usp=sharing)**: 클래스별 원본 데이터셋. origin_data로 파일이름 저장.
 *   <img width="263" height="367" alt="image" src="https://github.com/user-attachments/assets/f39bd96b-ad55-4499-853e-59e420e1f782" />
 
-*   **[Split Dataset (학습용 데이터)](https://drive.google.com/file/d/1gjMSW88cVNjefXdec7jtSDDiZuRfjYjU/view?usp=sharing)**: Train/Val 분할 및 YOLO 형식 변환 완료 데이터
+*   **[balanced_dataset (학습용 데이터)](https://drive.google.com/file/d/1gjMSW88cVNjefXdec7jtSDDiZuRfjYjU/view?usp=sharing)**: Train/Val 분할 및 YOLO 형식 변환 완료 데이터. balanced_dataset로 파일이름 저장.
 *   <img width="268" height="29" alt="image" src="https://github.com/user-attachments/assets/d8d53bb5-af26-47d7-99bd-292ceba114a4" />
 
 ---
