@@ -62,13 +62,12 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-#### 코드 실행 순서
-
 
 ---
 
 ### 📜 7. 소스코드 상세 설명 (Workflow)
-
+> **ℹ️ 상세 설계 확인**
+> 본 모델의 워크플로우에 대한 기술적 상세 내용은 [여기](https://github.com/alovelovea/capstone_yolo/blob/minjae/model/Readme.md#--model-workflow)를 클릭하여 확인해 주세요.
 
 ---
 
