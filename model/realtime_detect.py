@@ -37,7 +37,7 @@ def main():
 
     # 카메라 입력 해상도 고정
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 640)
     
     print("Starting stabilized detection with tracking (Conf 0.4)... Press 'q' to quit.")
 
