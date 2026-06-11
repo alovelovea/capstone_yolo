@@ -236,8 +236,8 @@ model/
 ## ⚙️ 10. 하드웨어 워크플로우
 
 하드웨어 관련 코드는 `hardware` 폴더에 정리되어 있습니다.
-
-> 본 하드웨어 워크플로우에 대한 기술적 상세 내용은 [여기](https://github.com/alovelovea/capstone_yolo/blob/minjae/hardware/README.md#%EF%B8%8F-hardware-workflow)를 클릭하여 확인해 주세요.
+[
+> 본 하드웨어 워크플로우에 대한 기술적 상세 내용은 [여기]((https://github.com/alovelovea/capstone_yolo/tree/main/hardware)https://github.com/alovelovea/capstone_yolo/blob/minjae/hardware/README.md#%EF%B8%8F-hardware-workflow)를 클릭하여 확인해 주세요.
 
 ```text
 hardware/
