@@ -49,8 +49,13 @@ NodeMCU
 ```
 
 ### 시스템 구조도
+<img width="567" height="375" alt="image" src="https://github.com/user-attachments/assets/8da59a79-b94b-4f08-a688-af391f11ead5" />
 
-![Hardware Architecture](./hardware/assets/hardware_architecture.png)
+
+### 실제 모습
+| 컨베이어 벨트 | 추론 파트 | 분류 파트 |
+|---|---|---|
+| <img width="394" height="214" alt="image" src="https://github.com/user-attachments/assets/eb675551-09bb-45f4-8296-ebfde665c09f" /> | <img width="331" height="250" alt="image" src="https://github.com/user-attachments/assets/f1221934-bf2a-4f85-afa1-87fb9ff0f235" /> | <img width="484" height="266" alt="image" src="https://github.com/user-attachments/assets/1357d528-1e94-45e3-baf4-995a832558e5" /> |
 
 ---
 
@@ -162,8 +167,6 @@ capstone_yolo/
 │   ├── mqtt_publish.py
 │   ├── wifi_mqtt_subscribe.ino
 │   ├── motor_test.ino
-│   └── assets/
-│       └── hardware_architecture.png
 └── weights/
     └── best.pt
 ```
@@ -236,8 +239,8 @@ model/
 ## ⚙️ 10. 하드웨어 워크플로우
 
 하드웨어 관련 코드는 `hardware` 폴더에 정리되어 있습니다.
-[
-> 본 하드웨어 워크플로우에 대한 기술적 상세 내용은 [여기](https://github.com/alovelovea/capstone_yolo/tree/main/hardware)https://github.com/alovelovea/capstone_yolo/blob/minjae/hardware/README.md#%EF%B8%8F-hardware-workflow)를 클릭하여 확인해 주세요.
+
+> 본 하드웨어 워크플로우에 대한 기술적 상세 내용은 [여기](https://github.com/alovelovea/capstone_yolo/tree/main/hardware)를 클릭하여 확인해 주세요.
 
 ```text
 hardware/
