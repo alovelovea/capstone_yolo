@@ -42,7 +42,6 @@ hardware/
 ├── mqtt_publish.py
 ├── wifi_mqtt_subscribe.ino
 └── motor_test.ino
-
 ```
 
 | 파일명                           | 역할                                              |
