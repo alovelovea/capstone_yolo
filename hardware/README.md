@@ -32,21 +32,7 @@ NodeMCU
 
 ---
 
-## 2. 시스템 구조도
-
-```md
-![Hardware Architecture](./assets/hardware_architecture.png)
-```
-
-이미지는 다음 위치에 저장합니다.
-
-```text
-hardware/assets/hardware_architecture.png
-```
-
----
-
-## 3. 폴더 구조
+## 2. 폴더 구조
 
 ```text
 hardware/
@@ -55,9 +41,8 @@ hardware/
 ├── nodemcu_sorter_final.ino
 ├── mqtt_publish.py
 ├── wifi_mqtt_subscribe.ino
-├── motor_test.ino
-└── assets/
-    └── hardware_architecture.png
+└── motor_test.ino
+
 ```
 
 | 파일명                           | 역할                                              |
@@ -67,11 +52,10 @@ hardware/
 | `mqtt_publish.py`             | MQTT 메시지 송신 단독 테스트 코드                           |
 | `wifi_mqtt_subscribe.ino`     | NodeMCU Wi-Fi 연결 및 MQTT 수신 테스트 코드               |
 | `motor_test.ino`              | 컨베이어 스텝모터 구동 테스트 코드                             |
-| `assets/`                     | 하드웨어 구조도 및 설명 이미지 저장 폴더                         |
 
 ---
 
-## 4. 사용 하드웨어
+## 3. 사용 하드웨어
 
 | 구성 요소           | 설명                       |
 | --------------- | ------------------------ |
@@ -87,9 +71,9 @@ hardware/
 
 ---
 
-## 5. 전체 동작 흐름
+## 4. 전체 동작 흐름
 
-### 5.1 웹캠 영상 입력
+### 4.1 웹캠 영상 입력
 
 노트북에 연결된 웹캠이 컨베이어 벨트 위의 쓰레기를 촬영합니다.
 
@@ -97,7 +81,7 @@ hardware/
 
 ---
 
-### 5.2 YOLO 객체 인식
+### 4.2 YOLO 객체 인식
 
 노트북에서 실행되는 YOLO 모델은 웹캠 영상을 기반으로 쓰레기 종류를 탐지합니다.
 
@@ -109,13 +93,14 @@ pet
 plastic
 glass
 paper
+plasticbag
 ```
 
 YOLO 모델이 쓰레기를 인식하면 해당 클래스명을 MQTT 메시지로 변환합니다.
 
 ---
 
-### 5.3 MQTT 메시지 전송
+### 4.3 MQTT 메시지 전송
 
 노트북은 MQTT Publisher 역할을 수행합니다.
 
@@ -130,7 +115,7 @@ YOLO 모델이 쓰레기를 인식하면 해당 클래스명을 MQTT 메시지�
 
 ---
 
-### 5.4 NodeMCU 메시지 수신
+### 4.4 NodeMCU 메시지 수신
 
 NodeMCU는 MQTT Subscriber 역할을 수행합니다.
 
@@ -147,7 +132,7 @@ MQTT 메시지를 수신하면 수신한 분류값에 따라 지정된 서보모
 
 ---
 
-### 5.5 서보모터 기반 플랩 제어
+### 4.5 서보모터 기반 플랩 제어
 
 NodeMCU는 수신한 분류 결과에 따라 해당 위치의 서보모터를 작동시킵니다.
 
@@ -162,10 +147,11 @@ NodeMCU는 수신한 분류 결과에 따라 해당 위치의 서보모터를 �
 | `plastic` | 플라스틱 분류 위치의 플랩 작동 |
 | `glass`   | 유리 분류 위치의 플랩 작동   |
 | `paper`   | 종이 분류 위치의 플랩 작동   |
+| `plasticbag`   | 비닐봉투 분류 위치의 플랩 작동   |
 
 ---
 
-## 6. MQTT Topic 구조
+## 5. MQTT Topic 구조
 
 | Topic            | 방향                    | 설명                       |
 | ---------------- | --------------------- | ------------------------ |
@@ -180,13 +166,14 @@ sorter/command -> pet
 sorter/command -> plastic
 sorter/command -> glass
 sorter/command -> paper
+sotert/command -> plasticbag
 ```
 
 ---
 
-## 7. 최종 코드 설명
+## 6. 최종 코드 설명
 
-## 7.1 노트북 YOLO + MQTT 송신 코드
+## 6.1 노트북 YOLO + MQTT 송신 코드
 
 파일명:
 
@@ -255,7 +242,8 @@ CLASS_TO_COMMAND = {
     "pet": "pet",
     "plastic": "plastic",
     "glass": "glass",
-    "paper": "paper"
+    "paper": "paper",
+    "plasticbag": "plasticbag"
 }
 ```
 
@@ -267,7 +255,7 @@ CLASS_TO_COMMAND = {
 
 ---
 
-## 7.2 NodeMCU 최종 제어 코드
+## 6.2 NodeMCU 최종 제어 코드
 
 파일명:
 
@@ -333,7 +321,8 @@ const uint8_t SERVO_PINS[NUM_CHANNELS] = {
   D2,   // pet
   D3,   // plastic
   D7,   // glass
-  D8    // paper
+  D8,   // paper
+  D9,   // plasticbag
 };
 ```
 
@@ -347,7 +336,8 @@ const char* COMMANDS[NUM_CHANNELS] = {
   "pet",
   "plastic",
   "glass",
-  "paper"
+  "paper",
+  "plasticbag"
 };
 ```
 
@@ -379,9 +369,9 @@ const unsigned long OPEN_HOLD_MS = 5000;
 
 ---
 
-## 8. 테스트 코드 설명
+## 7. 테스트 코드 설명
 
-## 8.1 MQTT 송신 테스트
+## 7.1 MQTT 송신 테스트
 
 파일명:
 
@@ -407,11 +397,12 @@ pet
 plastic
 glass
 paper
+plasticbag
 ```
 
 ---
 
-## 8.2 NodeMCU MQTT 수신 테스트
+## 7.2 NodeMCU MQTT 수신 테스트
 
 파일명:
 
@@ -440,7 +431,7 @@ NodeMCU가 Wi-Fi에 연결하고 MQTT 메시지를 정상적으로 수신하는�
 
 ---
 
-## 8.3 모터 구동 테스트
+## 7.3 모터 구동 테스트
 
 파일명:
 
@@ -468,7 +459,7 @@ motor_test.ino
 
 ---
 
-## 9. 최종 통합 테스트 순서
+## 8. 최종 통합 테스트 순서
 
 ### 1단계: 모터 단독 테스트
 
@@ -533,7 +524,7 @@ python hardware/laptop_yolo_mqtt_publish.py --model weights/best.pt --camera 0
 
 ---
 
-## 10. 최종 시스템 동작 예시
+## 9. 최종 시스템 동작 예시
 
 ```text
 [YOLO] detected: can
@@ -548,7 +539,7 @@ python hardware/laptop_yolo_mqtt_publish.py --model weights/best.pt --camera 0
 
 ---
 
-## 11. 전원 및 배선 주의사항
+## 10. 전원 및 배선 주의사항
 
 * NodeMCU의 3.3V 또는 5V 핀만으로 서보모터 여러 개를 직접 구동하지 않는 것이 좋습니다.
 * 서보모터는 별도의 5V 외부 전원을 사용하는 것을 권장합니다.
@@ -560,7 +551,7 @@ python hardware/laptop_yolo_mqtt_publish.py --model weights/best.pt --camera 0
 
 ---
 
-## 12. 문제 해결
+## 11. 문제 해결
 
 | 문제                      | 원인                   | 해결 방법                            |
 | ----------------------- | -------------------- | -------------------------------- |
@@ -576,7 +567,7 @@ python hardware/laptop_yolo_mqtt_publish.py --model weights/best.pt --camera 0
 
 ---
 
-## 13. 보안 주의사항
+## 12. 보안 주의사항
 
 다음 정보는 GitHub에 그대로 업로드하지 않는 것이 좋습니다.
 
@@ -599,3 +590,4 @@ secrets.h
 ```
 
 ---
+
